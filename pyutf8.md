@@ -29,18 +29,16 @@
 
 * Example: `1-pyutf8.py`
 
-```python
-#!/usr/bin/env python
-# encoding=utf-8 
-import os
-import sys
-a = "我是中文"
-b = u"我也是中文"
-os.write(sys.stdin.fileno(), a)
-os.write(sys.stdin.fileno(), b)
-print a
-print b
-```
+        #!/usr/bin/env python
+        # encoding=utf-8 
+        import os
+        import sys
+        a = "我是中文"
+        b = u"我也是中文"
+        os.write(sys.stdin.fileno(), a)
+        os.write(sys.stdin.fileno(), b)
+        print a
+        print b
 
 > 若缺少了了# encoding=utf-8 则文件在 执行时会出错:
 
