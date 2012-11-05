@@ -29,6 +29,7 @@
 
 * Example: `1-pyutf8.py`
 
+```python
         #!/usr/bin/env python
         # encoding=utf-8 
         import os
@@ -39,6 +40,7 @@
         os.write(sys.stdin.fileno(), b)
         print a
         print b
+```
 
 > 若缺少了了# encoding=utf-8 则文件在 执行时会出错:
 
