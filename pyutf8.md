@@ -3,7 +3,6 @@
 ######Python的UTF-8编码问题比较让人抓狂, 我之前抓狂过很多次之后决定写一个wiki,
 ######主要是为了解决我们在Python编码过程中遇到的UTF-8中文乱码问题.
 ######PS1: 本WIKI不会对UTF-8具体的细节进行过多的说明, 主要是提供各种不同的情况情况该如何解决提供一些方法.
-######PS2: 图省事的话直接看第4点以及conclusion即可:)
 ######PS2: 图省事的话直接看第3, 4点以及conclusion即可:)
 
 #### 1. 文件编码
@@ -12,7 +11,7 @@
 或者使用iconv: iconv -f utf8 filename 如果输出正常, 无错误, 无乱码, 那么该文件也应该是正确地以UTF-8的编码方式保存的.
 如果打算使用utf编码,可以使用:set fileencoding=utf8进行指定,vim会负责完成转换工作.
 
-* 关于 [PEP-0263] [1]建议是在文件的头两行显示指定文件编码,方式有如下几种:      
+* 关于 [PEP-0263] [1]建议是在文件的头两行显示指定文件编码,方式有如下几种:
 
     * `# coding=<encoding name>`
     * `# -*- coding: <encoding name> -*-`
@@ -64,7 +63,6 @@ print b
 ```
 
 * 第二个print的结果可以知道, a为str, b, c均为unicode. 而第一个print则不会显示这些信息.
-    
 
 * 在确定文件编码之后没问题之后,继续分析别的错误.
 
@@ -97,7 +95,6 @@ print b
         #do whatever you want with a, net transporat or write to file.
         ```
     * 无encoding参数的encode, decode方法所使用的默认encoding为系统环境获取, 不建议使用.
-    
 
 #### 4. Examples:
 
@@ -143,7 +140,7 @@ main()
 
 * 执行 python encode_or_decode_write.py encode , sstr1, ustr1, ustr2 能够成功写入文件, sstr2 失败.
     * 对unicode使用encode使之变成可读, 可写, 可传输的str. 所以 ustr1, ustr2 均成功.
-    * sstr1因为没有包含非ASCII字符, 所以也成功了. 而sstr1包含有中文, 失败. __一定, 一定不要使用unicode进行读写, 传输等操作__
+    * sstr1因为没有包含非ASCII字符, 所以也成功了. 而sstr1包含有中文, 失败. __一定不要使用unicode进行读写__, __传输__ 等操作
 
 * 执行 python encode_or_decode_write.py decode , 只有sstr1, ustr1 能够成功写入, 因为他们没有非ASCII字符.
     * sstr2, decode之后变为unicode 该过程成功,失败是因为将unicode __写入文件__
@@ -151,7 +148,7 @@ main()
 
 #### 5. Conclusion:
 * 将unicode留在内存中
-* 读取, 写入文件, 网络传输使用str. 即 
+* 读取, 写入文件, 网络传输使用str. 即
 str_str = unicode_string.encode('utf8')
 
 #### 6. 有错误, 不清楚的地方欢迎请指出, 谢谢:)
